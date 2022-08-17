@@ -1,0 +1,32 @@
+.input{
+        float: right;
+        margin-top: 30px;
+        margin-right: 0px;
+        padding: 5px 0px 5px 0px;
+        font-family:'Nunito', sans-serif;
+        color: white;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid rgb(255, 0, 200);
+        outline: none;
+}
+.button{
+        float: right;
+        margin-top: 30px;
+        margin-right: 20px;
+        padding: 5px 30px 5px 30px;
+        font-family:'Nunito', sans-serif;
+        color: white;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-image: linear-gradient(to top right, rgb(255, 0, 200) 0%, rgb(43, 70, 223) 100%) 1;
+        outline: none;
+        transition: all cubic-bezier(0.215, 0.610, 0.355, 1) .5s;
+}
+.button:hover{
+        cursor: pointer;
+        transform: translateY(-3px);
+}
+.button:active{
+        transform: translateY(3px);
+}

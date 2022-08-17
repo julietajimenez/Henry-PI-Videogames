@@ -1,0 +1,23 @@
+.pages{
+        margin-top: 2140px;
+
+}
+.list{
+    margin: 0 4px;
+
+    padding: 10px 20px;
+    list-style: none;
+    display: inline-block;
+    border: 1px solid rgb(43, 70, 223);
+    color: white;
+
+}
+
+.list:hover{
+        cursor: pointer;
+        transform: translateY(-3px);
+}
+.list:active{
+        color: white;
+        transition: cubic-bezier(0.215, 0.610, 0.355, 1) 1s;
+} 

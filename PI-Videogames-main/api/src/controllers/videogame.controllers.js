@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const {Videogame, Genero, conn} = require('../db.js')
 
 
-const getVideogame = async(req, res, next) => {
+  const getVideogame = async(req, res, next) => {
     try {
         const requestApi1 = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
         const requestApi2 = await axios.get(requestApi1.data.next)
@@ -18,11 +18,11 @@ const getVideogame = async(req, res, next) => {
             const obj = {
                 id: el.id, 
                 name: el.name,
-/*                 description: el.description,
-                released: el.released,
-                rating: el.rating,
-                platforms: el.platforms.map(el => el.platform.name), */
-                genres: el.genres.map(el=> el.name),
+//                 description: el.description,
+//               released: el.released,
+                rating: el.rating, 
+                platforms: el.platforms.map(el => el.platform.name),
+                genres: el.genres.map(el=> ' '+ el.name),
                 background_image: el.background_image
             }
             return obj 
@@ -30,19 +30,19 @@ const getVideogame = async(req, res, next) => {
     const gameDB = await Videogame.findAll({include: Genero})
     const allGames = gameDB.concat(response) 
     res.send(allGames)
-        
+
     } catch (error) {
         next(error)
     }
-}
+}  
 
-const getVideogameByName = async (req, res, next) => {
+ const getVideogameByName = async (req, res, next) => {
     const {name} = req.query; 
     if(!name) res.status(400).json({msg: 'name invalid'})
     try {
         const requestApi = await axios(`https://api.rawg.io/api/games?search=${name}&&key=${API_KEY}`)
         const datafiltered = requestApi.data.results.filter((el, i)=> i < 15)
-        const response = datafiltered.map(el => {
+        const responseApi = datafiltered.map(el => {
                     const obj = {
                         id: el.id,
                         name: el.name,
@@ -60,12 +60,12 @@ const getVideogameByName = async (req, res, next) => {
             },
             include: {model: Genero}
         })
-        const allbyName = [...response, ...namebyDB]
-        res.send(allbyName)
+        const allbyName = [...responseApi, ...namebyDB]
+        res.status(200).send(allbyName)
     } catch (error) {
         next(error)
     }
-}
+} 
 
 const getVideogameById = async (req, res, next) =>{
     const {id} = req.params
@@ -77,11 +77,11 @@ const getVideogameById = async (req, res, next) =>{
                     id: requestApi.id,
                     name: requestApi.name,
                     background_image: requestApi.background_image,
-                    genres: requestApi.genres.map(el=>el.name),
+                    genres: requestApi.genres.map(el=>el.name + ' '),
                     description: requestApi.description_raw,
                     released: requestApi.released,
                     rating: requestApi.rating,
-                    platforms: requestApi.platforms.map(el => el.platform.name)
+                    platforms: requestApi.platforms.map(el => el.platform.name + ' ')
                 }
                     return res.send(obj)
             } else {
@@ -93,25 +93,26 @@ const getVideogameById = async (req, res, next) =>{
     }
 }
 
-const createVideogame = async (req, res, next) => {
-    const {name, description_raw, released, rating, background_image, platforms, genero} = req.body
-    if(!name || !description_raw || !platforms) res.status(400).json({msg: "missing data"})
-    if(typeof name !== 'string' || typeof description_raw !== 'string' || typeof released !== 'string' || typeof rating !== 'number' || typeof background_image !== 'string' || typeof platforms !== 'object') res.status('data type invalid')
-    try {
-        const  newVG = {name, description_raw, released, rating, background_image, platforms}
-        const newinDB = await Videogame.create(newVG)
 
-        const connection = await Genero.findAll({
-            where: { 
-                name: genero
-            }
-        })
-        await newinDB.addGenero(connection)
-        res.json(newinDB)
+ const createVideogame = async (req, res, next)=> {
+    const {name, description_raw, released, rating, platforms, background_image, genero, created} = req.body
+    try {
+        if(!name || !description_raw || !platforms) return res.status(400).json({msg: "missing data"})
+            const obj = {name, description_raw, released, rating, platforms, background_image, created}
+            const newVG = await Videogame.create(obj)
+    
+            const genreDB= await Genero.findAll({
+                where:{
+                    name: genero
+                }
+            })
+            await newVG.addGenero(genreDB)
+    
+            return res.json(newVG)
     } catch (error) {
         next(error)
     }
-}
+} 
 
 
 module.exports = {

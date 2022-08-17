@@ -23,20 +23,20 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.FLOAT
-    },
+    }, 
     platforms: {
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: false
     }, 
     background_image: {
       type: DataTypes.STRING,
-      validate: {
+/*       validate: {
         isUrl: {
           args: true,
           msg: 'debe ser url'
         }
-      }
-    },
+      } */
+    }, 
     created: {
       type: DataTypes.BOOLEAN,
       defaultValue: true

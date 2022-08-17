@@ -1,4 +1,46 @@
-.img{
+.div{
+    background-color:rgba(2, 2, 2, 0.2) ;
     width: 300px;
-    height: 200px;
+    height: 300px;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    position: absolute;
+    margin-left: 500px;
+    text-decoration: none;
 }
+.img{
+    width: 280px;
+    height: 200px;
+    margin-top: 10px;
+}
+.imgDefault{
+    width: 280px;
+    height: 200px;
+    margin-top: 10px;
+}
+.container{
+    width: 350px;
+    height: 420px;
+    margin: auto;
+    margin-top: .5%;
+    margin-bottom: 0%; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    float: left;  
+}
+.name{
+    margin-left: 10px;
+    font-size: 14px;
+    color: white;
+    line-height: 0px;
+    text-align: center;
+}
+.container2{
+    font-size: 13px;
+    padding: 0px;
+    left: 1px;
+    margin-top: 0px;
+}
+

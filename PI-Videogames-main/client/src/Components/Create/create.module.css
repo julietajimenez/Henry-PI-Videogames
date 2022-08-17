@@ -1,0 +1,158 @@
+ .img{
+    position: relative;
+    margin: 0%;
+    width: 40%;
+    height: 653px;
+    float: left;
+ } 
+ .input{
+     color: white;
+     background-color: rgb(51, 50, 63);
+     border: transparent;
+     height: 30px;
+     width: 180px;
+     display:inline-block;
+     position: relative;
+     margin: 10px;
+     border: 1px solid transparent;
+     border-image: linear-gradient(to top right, rgb(255, 0, 200) 0%, rgb(43, 70, 223) 100%) 1;
+}
+.div{
+    color: white;
+    position: absolute;
+    width: 99%;
+}
+.form{
+    float: right;
+    width: 55%;
+    height: 480px;
+    margin-top: 0px;
+    margin-right: 27px;
+    border: 1px solid white;
+
+}
+.divName{
+    float: left;
+    margin-left: 50px;
+}
+.divImage{
+    margin: 50px;
+    margin-left: 7%;
+}
+.inputImage{
+    width: 500px;
+
+}
+.divDescription{
+    float: left;
+    margin-left: 17px;
+    
+}
+.divReleased{
+    margin-right: 7px;
+
+}
+.select{
+    background-color: transparent;
+    color: white;
+    border: 1px solid transparent;
+    border-image: linear-gradient(to top right, rgb(255, 0, 200) 0%, rgb(43, 70, 223) 100%) 1;
+    height: 30px;
+    width: 180px;
+    text-align: center;
+}
+
+.divButton{
+    background-color: red;
+    position: absolute;
+    cursor: pointer;
+}
+.buttonCreate{
+    width: 400px;
+    height: 20px;
+    color: white;
+    background-image: linear-gradient(to top right, rgb(255, 0, 200), rgb(43, 70, 223) 100%);
+    border: 1px solid transparent;
+    margin-top: 95px;
+    margin-left: 180px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    position: fixed;
+}
+.buttonHome{
+    width: 50px;
+    height: 50px;
+    border: 1px solid white;
+    color: white;
+    background-color: rgb(51, 50, 63);
+    border: 1px solid transparent;
+    float: right;
+    margin: 15px;
+    bottom: 0px;
+    cursor: pointer;
+}
+.p{
+    color:brown;
+    font-size: 10px;
+    padding:0px;
+    margin: 0px;
+    display: block;
+}
+.option{
+    background-color: rgb(51, 50, 63);
+    color: white;
+}
+.optionSelect{
+    display: inline-block;
+    width: 135px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+}
+.delete{
+    color: red;
+    border: transparent;
+    background-color: transparent;
+}
+.nameSelect{
+    display: inline-block;
+    margin-top: 0%;
+}
+.genres{
+    float: left;
+    margin-top: 0px;
+}
+.divSelectGenre{
+    display: flex;
+    width: 200px;
+    height: 50px;
+    margin-top: 50px;
+    margin-left: 120px;
+}
+.errorGenre{
+    display: block;
+    position: absolute;
+    float: left;
+    margin-top: 30px;
+}
+.platforms{
+    float: right;
+    margin-right: 100px;
+    margin-top: 0px;
+}
+.divSelectPlatforms{
+    display: flex;
+    width: 200px;
+    height: 50px;
+    float: right;
+    margin-right: 75px;
+    margin-top: 50px;
+}
+.errorPlatforms{
+    display: block;
+    position: absolute;
+    margin-top: 30px; 
+}
+
+
