@@ -53,27 +53,32 @@ export default function Create (){
 
     function validate (input){ //ver si debe recibir input o no
         let errors = {}
-        let regexURL =/((http|ftp|https):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;     
+        let regexName = /^[0-9a-zA-Z \-':_]+$/;
+        let regexRating = /^[0-9]+([.])?([0-9]+)?$/;
 
         if(!input.name.trim()){
             errors.name = 'input name is required'
-        } 
+        } else if(!regexName.test(input.name)){
+                errors.name = "can only contain letters, numbers, spaces and (: - ')"
+            }
+        
         videogames.map(vg => {
             if(input.name.toLowerCase() === vg.name.toLowerCase()){
                 errors.name= 'the name entered already exists'
             }
         })
+        
 
         if(!input.description_raw.trim()){
             errors.description_raw = 'input description is requires'
         
-        }    if(input.rating > 5 || input.rating < 0){
+        }    
+        if(input.rating > 5 || input.rating < 0){
             errors.rating = 'the score must be between 0 and 5'
+        } else if(!regexRating.test(input.rating)){
+            errors.rating = 'only numbers can be entered'
         }
-        
-        if(!regexURL.test(input.background_image)){
-            errors.background_image = "if you don't put an image, one will be put by default"
-        }
+
         if(!input.platforms || input.platforms.length < 1){
             errors.platforms = 'platforms is required'
         }
@@ -113,7 +118,7 @@ export default function Create (){
         dispatch(createVideogames(input))
         setErrors(validate(input))
         if(Object.keys(errors).length===0){
-            alert('successfully')
+            alert('successfully created video game')
             setInput({
                 name:'',
                 background_image: '',
@@ -152,13 +157,12 @@ export default function Create (){
                 <div className={style.divRating}>
                     <label className={style.label}>Rating: </label>
                     <input className={style.input} type={'text'} name={'rating'} value={input.rating} onChange={(e)=>handleChange(e)} onBlur={handleBlur}/>
-                    {errors.rating && <p className={style.p}>{errors.rating}</p>}
+                    {errors.rating && <p className={`${style.p} ${style.errorRating}`}>{errors.rating}</p>}
                 </div>
 
                 <div className={style.divImage}>
                     <label className={style.label}>Image: </label>
-                    <input className={`${style.input} ${style.inputImage}`} type={'text'} name={'background_image'} value={input.background_image} onChange={(e)=>handleChange(e)} onBlur={handleBlur}/> 
-                    {errors.background_image && <p className={style.p}>{errors.background_image}</p>}
+                    <input className={`${style.input} ${style.inputImage}`} type={'text'} name={'background_image'} value={input.background_image} onChange={(e)=>handleChange(e)} onBlur={handleBlur} placeholder={"if you don't put an image, one will be put by default"}/> 
                 </div>
 
                 <div className={style.divDescription}>

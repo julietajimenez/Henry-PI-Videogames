@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getByName } from "../../Redux/Actions";
+import { useDispatch/* , useSelector */ } from "react-redux";
+import { getByName, /* pagesControl  */} from "../../Redux/Actions";
 import style from './search.module.css'
 
 export default function Search(){
 const [name, setName] = useState('')
 const dispatch = useDispatch();
+//const page = useSelector(state=> state.pages)
 
 function handleChange(e){
     e.preventDefault()
@@ -15,7 +16,7 @@ function handleChange(e){
 function handleSubmit(e){
     e.preventDefault()
     dispatch(getByName(name))
-
+    //dispatch(pagesControl(page))
 }
 
     return(

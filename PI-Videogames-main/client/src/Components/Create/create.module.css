@@ -98,6 +98,10 @@
     margin: 0px;
     display: block;
 }
+.errorRating{
+    position: absolute;
+    margin-left: 470px;
+}
 .option{
     background-color: rgb(51, 50, 63);
     color: white;

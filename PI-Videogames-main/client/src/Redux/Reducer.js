@@ -1,9 +1,9 @@
 const initialState = {
     videogames: [],
-    allVideogames: [],
+    filtered: [],
     detail: {},
     genre: [],
-    videogamesForms: []
+    pages: 1
 }
 
 export default function reducer(state= initialState, action){
@@ -12,12 +12,13 @@ export default function reducer(state= initialState, action){
         return {
             ...state,
             videogames: action.payload,
-            allVideogames : action.payload
+            filtered : action.payload
         }
         case 'GET_BY_NAME':
             return{
                 ...state,
-                videogames: action.payload
+                videogames: action.payload,
+                pages: 1
             }
         case 'GET_BY_ID':
             return {
@@ -38,10 +39,10 @@ export default function reducer(state= initialState, action){
             return{
                 ...state,
                 videogames: state.videogames.concat(action.payload),
-                allVideogames: state.allVideogames.concat(action.payload)
+                filtered: state.filtered.concat(action.payload)
             }
         case 'ORDER_ALPHABETIC':
-            const todos = [...state.allVideogames]
+            const todos = state.filtered
             const order = action.payload ===  'asc' ? todos.sort(function(a, b){
                 if(a.name.toLowerCase() > b.name.toLowerCase()){
                     return 1
@@ -60,10 +61,10 @@ export default function reducer(state= initialState, action){
             })
             return {
                 ...state, 
-                videogames: action.payload === 'all' ? state.videogames : order
+                filtered: action.payload === 'all' ? state.videogames : order
             }
         case 'ORDER_RATING':
-            const todosVG = [...state.allVideogames]
+            const todosVG = state.filtered
             const orderR = action.payload === 'asc' ? todosVG.sort(function(a, b){
                 if(a.rating > b.rating){
                     return 1
@@ -82,11 +83,12 @@ export default function reducer(state= initialState, action){
             })
             return {
                 ...state,
-                videogames: action.payload === 'all' ? state.videogames : orderR
+                filtered: action.payload === 'all' ? state.videogames : orderR
             }
         case 'FILTER_GENRE': 
-             const allVG = state.allVideogames 
-            const filterApi = allVG.filter(el => el.genres?.toString().includes(action.payload))
+             const allVG = state.filtered
+             const filterApi = allVG.filter(el => el.genres?.toString().includes(action.payload))
+             console.log(filterApi);
             const filterDB =  allVG.filter(el=> {
                 for(var i = 0; i < el.generos?.length; i++){
                     if(el.generos[i]?.name.includes(action.payload)){
@@ -97,38 +99,22 @@ export default function reducer(state= initialState, action){
             const concatFilter = filterApi.concat(filterDB)
             return {
                 ...state,
-                videogames: action.payload === 'all' ? state.allVideogames : concatFilter
+                filtered: action.payload === 'all' ? state.videogames : concatFilter
             }
         case 'FILTER_CREATED_API':
-            const allVGames = state.allVideogames
+            const allVGames = state.filtered
             const filter = action.payload === 'created' ? allVGames.filter(el => el.created) : allVGames.filter(el=> !el.created)
             return {
                 ...state,
-                videogames: action.payload === 'all' ? state.allVideogames : filter
+                filtered: action.payload === 'all' ? state.videogames : filter
+            }
+        case 'CURRENT_PAGES':
+            return {
+                ...state,
+                pages: action.payload
             }
             default: return state
         }
-    
-
 }
-/* let orderA= action.payload === 'asc' ? state.allDogs.sort(function(a, b){
-                if(a.name > b.name){
-                    return 1
-                } 
-                if(b.name > a.name){
-                    return -1
-                } 
-                return 0
-            }) : state.allDogs.sort(function(a,b){
-                if(a.name > b.name){
-                    return -1
-                }
-                if(b.name > a.name){
-                    return 1 
-                } 
-                return 0
-            }) 
-            
-            
-            (state.videogames.map(el => el.name)).sort() : (state.videogames.map(el => el.name)).sort().reverse()*/
+
 

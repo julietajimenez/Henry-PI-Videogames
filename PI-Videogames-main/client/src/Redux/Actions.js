@@ -162,10 +162,9 @@ export const filterCreatedOrNot = (payload)=> {
     }
 }
 
-export const deleteVideogames = (id) => {
-    return dispatch=> {
-        return axios.delete(`http://localhost:3001/videogame/${id}`)
-        .then(res => console.log(res.data))
-        .catch(error=> console.log(error))
+export const pagesControl = (number) => {
+    return {
+        type: 'CURRENT_PAGES',
+        payload: number
     }
 }

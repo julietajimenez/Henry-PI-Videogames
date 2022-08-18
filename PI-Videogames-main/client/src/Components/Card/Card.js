@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Link} from "react-router-dom";
 import style from './card.module.css'
 import img from './default.jpg'
 
 export default function Card (props){
+
 
     return (
         <div className={style.containerDiv}>
@@ -16,7 +16,6 @@ export default function Card (props){
                         <p className={style.p}>{props.generos && props.generos.map(el => el.name + ('  '))}</p>
                         <p className={style.p}>{props.genres &&  props.genres + ('  ')}</p>
                         <p className={style.rating}>{props.rating}⭐</p>
-  
                         </div>
                     </Link> 
                 </div>
