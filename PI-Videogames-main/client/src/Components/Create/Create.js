@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {createVideogames} from '../../Redux/Actions.js';
+import {createVideogames, getAllVideogame} from '../../Redux/Actions.js';
 import {Link, useHistory} from 'react-router-dom';
 import style from './create.module.css';
 import img from './create5.jpg';
@@ -51,7 +51,7 @@ export default function Create (){
         })
     }
 
-    function validate (input){ //ver si debe recibir input o no
+    function validate (input){ 
         let errors = {}
         let regexName = /^[0-9a-zA-Z \-':_]+$/;
         let regexRating = /^[0-9]+([.])?([0-9]+)?$/;
@@ -128,6 +128,7 @@ export default function Create (){
                 platforms: [],
                 genero: []
             })
+            dispatch(getAllVideogame())
             history.push('/home')
         }
         else {

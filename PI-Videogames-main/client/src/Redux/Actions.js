@@ -15,15 +15,7 @@ export const getAllVideogame = () => {
         }
     }
 }
-/* export const getAllVideogame = ()=> {
-    return (dispatch)=> {
-    return axios('http://localhost:3001/videogame/')
-    .then(res => dispatch=>({
-        type: 'GET_VIDEOGAMES', 
-        payload: res.data
-    }))
-}
-} */
+
 
 export const getByName = (name) => {
     return async(dispatch)=>{
@@ -44,17 +36,8 @@ export const getByName = (name) => {
         }
 }
 }
-/* 
-export const getByName = (name)=> {
-    return (dispatch)=> {
-        return axios(`http://localhost:3001/videogame/byName?name=${name}`)
-        .then (res=> dispatch({
-            type: 'GET_BY_NAME',
-            payload: res.data
-        }))
-    }
-}
-*/
+
+
 export const getById = (id) => {
     try {
         return async (dispatch)=>{
@@ -68,17 +51,8 @@ export const getById = (id) => {
         console.log(error);
     }
 }
-/* 
-export const getById=(id)=> {
-    return (dispatch)=> {
-        return axios(`http://localhost:3001/videogame/${id}`)
-        .then(res=> dispatch({
-            type: 'GET_BY_ID',
-            payload: res.data
-        }))
-    }
-}
-*/
+
+
 export const removeDetail = () => {
     return {
         type: 'REMOVE_DETAIL'
@@ -99,16 +73,8 @@ export const getGenre = () =>{
         console.log(error);
     }
 }
-/* 
-export const getGenre = ()=> {
-    return (dispatch) => {
-        return axios('http://localhost:3001/genre')
-        .then(res=> dispatch({
-            type: 'GET_GENRE',
-            payload: res.data
-        }))
-    }
-    */
+
+
 export const createVideogames = (payload) => {
     try {
         return async(dispatch)=> {
@@ -122,17 +88,7 @@ export const createVideogames = (payload) => {
         console.log(error);
     }
 }
-/* 
-export const createVideogames = (payload)=> {
-    return (dispatch)=> {
-        return axios.post('http://localhost:3001/videogame/create', payload)
-        .then(res => dispatch({
-            type: 'CREATE_VIDEOGAME',
-            payload: res.data
-        }))
-    }
-}
-*/
+
 
 export const order_Alphabetic = (payload) => {
     return {
@@ -168,3 +124,4 @@ export const pagesControl = (number) => {
         payload: number
     }
 }
+

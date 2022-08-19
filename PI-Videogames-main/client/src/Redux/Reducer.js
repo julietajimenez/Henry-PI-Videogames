@@ -17,7 +17,8 @@ export default function reducer(state= initialState, action){
         case 'GET_BY_NAME':
             return{
                 ...state,
-                videogames: action.payload,
+              /*   videogames: action.payload, */
+              filtered: action.payload,
                 pages: 1
             }
         case 'GET_BY_ID':
@@ -61,7 +62,7 @@ export default function reducer(state= initialState, action){
             })
             return {
                 ...state, 
-                filtered: action.payload === 'all' ? state.videogames : order
+                filtered: order
             }
         case 'ORDER_RATING':
             const todosVG = state.filtered
@@ -83,12 +84,11 @@ export default function reducer(state= initialState, action){
             })
             return {
                 ...state,
-                filtered: action.payload === 'all' ? state.videogames : orderR
+                filtered:  orderR
             }
         case 'FILTER_GENRE': 
-             const allVG = state.filtered
+             const allVG = state.videogames
              const filterApi = allVG.filter(el => el.genres?.toString().includes(action.payload))
-             console.log(filterApi);
             const filterDB =  allVG.filter(el=> {
                 for(var i = 0; i < el.generos?.length; i++){
                     if(el.generos[i]?.name.includes(action.payload)){
@@ -102,7 +102,7 @@ export default function reducer(state= initialState, action){
                 filtered: action.payload === 'all' ? state.videogames : concatFilter
             }
         case 'FILTER_CREATED_API':
-            const allVGames = state.filtered
+            const allVGames = state.videogames
             const filter = action.payload === 'created' ? allVGames.filter(el => el.created) : allVGames.filter(el=> !el.created)
             return {
                 ...state,

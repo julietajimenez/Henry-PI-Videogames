@@ -23,29 +23,7 @@ const {Genero} = require('../db.js')
     }
 } 
 
-/* const getGenre = (req, res, next) => {
-    axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-    .then(genres=> genres.data.results.map(el => {
-        const obj = {
-            id: el.id,
-            name: el.name
-        } 
-        return obj
-    }))
-    Genero.findAll()
-    .then(response => {
-        if(response.length >0){
-            res.json(response)
-        } else {
-            Genero.bulkCreate(genres)
-            .then(response => {
-                res.json(response)
-            })
-            .catch(err=> console.log(err))
-        }
-    })
-    .catch(error=> next(error))
-} */
+
 
 module.exports= {
     getGenre

@@ -12,7 +12,7 @@ export default function FilterGenres (props){
         e.preventDefault()
         dispatch(filterGenre(e.target.value))
         props.setCurrentPage(1)
-        console.log(e.target.value);
+        props.setFilter(true)
     }
     return (
         <div> 

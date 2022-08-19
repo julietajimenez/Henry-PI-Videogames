@@ -16,11 +16,10 @@ const dispatch = useDispatch()
     return (
         <div>
             <select className={`${style.select} ${style.firstSelect}`} onChange={(e)=> handleOrder(e)}>
-                <option className={style.option} value={'all'}>ORDER ALPHABETIC</option>
+                <option className={style.option} value={''}>ORDER ALPHABETIC</option>
                 <option className={style.option} value={'asc'}>A-Z</option>
                 <option className={style.option} value={'desc'}>Z-A</option>
             </select>
         </div>
     )
 }
-//Sorting

@@ -11,7 +11,7 @@ function handleFilter(e){
     e.preventDefault(e)
     dispatch(filterCreatedOrNot(e.target.value))
     props.setCurrentPage(1)
-
+    props.setFilter(true)
 }
     return (
         <div>

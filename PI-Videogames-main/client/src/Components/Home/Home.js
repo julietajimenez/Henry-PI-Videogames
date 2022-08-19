@@ -14,22 +14,18 @@ import img from './home12-.jpg';
 
 export default function Home (){
 const dispatch = useDispatch();
-
-/* useEffect(()=>{
-    dispatch(getAllVideogame())
-    dispatch(getGenre())
-},[dispatch])
- */
 const videogames = useSelector(state=> state.videogames)
 const filtered = useSelector(state=>state.filtered)
-const [filter, setFilter] = useState(false)
 const page = useSelector(state=> state.pages)
+
+const [filter, setFilter] = useState(false)
 const [order, setOrder] = useState('')
 const [currentPage, setCurrentPage ] = useState(page)
 const [gamesPerPage, setGamesPerPage] = useState(15)
 const lastGame = currentPage * gamesPerPage
 const firstGame = lastGame - gamesPerPage
 //const slicePerPage = videogames.slice(firstGame, lastGame)
+
 var allVideogames = []
 if(filtered.length){
     allVideogames = filtered
@@ -42,10 +38,11 @@ const slicePerPage = allVideogames?.slice(firstGame, lastGame)
 
 
 useEffect(()=>{
-    dispatch(getAllVideogame())
-    dispatch(getGenre())
-   
-},[dispatch])
+    if(!filtered.length){
+        dispatch(getAllVideogame())
+        dispatch(getGenre())
+    }
+},[dispatch, filtered.length])
 
 useEffect(()=>{
     setCurrentPage(page)
@@ -55,19 +52,6 @@ useEffect(()=>{
 function paginate (numPage){
     setCurrentPage(numPage)
 }
-
-/*  const validateCards = () =>{
-        if(videogamesFilter.length && Array.isArray(videogamesFilter)){
-            allGames = videogamesFilter;
-            return <Cards videogames={videogamesFilter?.slice(firstIndex, lastIndex)} />
-        }else if(filter === true){ 
-            allGames = videogames;
-            return(<><span className={s.spanError}>Juego no encontrado</span> <Cards videogames={videogames?.slice(firstIndex,lastIndex)}/> </>)
-        }else {
-            allGames = videogames;
-            return <Cards videogames={videogames?.slice(firstIndex, lastIndex)}/>
-        }
-    } */
 
 
  if(videogames.length <= 0){
@@ -114,7 +98,7 @@ function paginate (numPage){
                 })
             }
             <Paginated
-            videogames = {videogames.length}
+            videogames = {allVideogames? allVideogames.length : videogames.length}
             gamesPerPage = {gamesPerPage}
             paginate = {paginate}
             />

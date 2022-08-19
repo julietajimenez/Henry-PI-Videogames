@@ -16,7 +16,7 @@ function handleOrder (e){
     return (
         <div>
             <select className={style.select} onChange={(e)=>handleOrder(e)}>
-                <option className={style.option} value={'all'}>ORDER RATING</option>
+                <option className={style.option} value={''}>ORDER RATING</option>
                 <option className={style.option} value={'asc'}>lower to higher rating</option>
                 <option className={style.option} value={'desc'}>higher to lower rating</option>
             </select>
